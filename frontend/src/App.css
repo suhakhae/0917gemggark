@@ -1,0 +1,19 @@
+/* src/App.css (레이아웃 수정 버전) */
+
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #282c34;
+  padding: 20px; /* 세로 길이를 줄이기 위해 padding 값 조정 */
+  color: white;
+  margin-bottom: 24px; /* 헤더와 메인 콘텐츠 사이의 간격 */
+}
+
+/* 메인 콘텐츠 영역을 위한 새로운 스타일 */
+.App-main {
+  max-width: 1200px; /* 콘텐츠의 최대 가로 너비 제한 */
+  margin: auto;      /* 화면 중앙 정렬 */
+  padding: 0 20px;   /* 좌우 여백 */
+}
