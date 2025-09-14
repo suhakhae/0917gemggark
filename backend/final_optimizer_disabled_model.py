@@ -1,4 +1,4 @@
-# final_optimizer.py (경제적 초기화 규칙 적용 최종 버전)
+# final_optimizer.py 
 import tensorflow as tf
 import numpy as np
 from typing import Dict, Optional, Any, List
@@ -9,6 +9,11 @@ import logging
 
 from gem_simulator import GemSimulator, GEM_GRADES, GEM_INFO
 from scenario_generator import generate_scenarios
+
+# ==========================================================================
+# *** 해당 코드는 final_optimizer의 초기 모델로 실제 서비스와 관련이 없습니다***
+# ==========================================================================
+
 
 # --- 상수 정의 ---
 GEM_TYPES_ORDER = ["안정", "견고", "불변", "침식", "왜곡", "붕괴"]
@@ -236,4 +241,5 @@ class FinalOptimizer:
             if best_scenario_for_core['cost'] != float('inf'):
                 final_strategy['total_cost'] += best_scenario_for_core['cost']
                 final_strategy['details_per_core'].append({ "core": core['core'], "best_combination": best_scenario_for_core['combination'] })
+
         return final_strategy
