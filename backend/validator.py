@@ -1,9 +1,8 @@
-# validator.py (타입 판단 버그 수정 버전)
+# validator.py 
 from typing import List, Dict, Tuple, Any
 import copy
 import numpy as np
 
-# --- (상단 상수 정의 및 _calculate_gem_cost 함수는 이전과 동일) ---
 CORE_INFO = {"유물": 15, "고대": 17}
 GEM_INFO = { "안정": 8, "견고": 9, "불변": 10, "침식": 8, "왜곡": 9, "붕괴": 10 }
 MIN_GEM_WILLPOWER_COST = 3
@@ -15,8 +14,9 @@ def _calculate_gem_cost(gem: Dict) -> int:
     return float('inf')
 
 # ===================================================================
-# *** 수정된 핵심 로직: 고도화된 백트래킹 알고리즘 ***
+# *** 핵심 로직: 고도화된 백트래킹 알고리즘 ***
 # ===================================================================
+
 def check_feasibility(cores_input: Dict[str, List[str]], held_gems: List[Dict]) -> Tuple[bool, Any]:
     core_list = []
     for core_type, grades in cores_input.items():
@@ -70,7 +70,7 @@ def check_feasibility(cores_input: Dict[str, List[str]], held_gems: List[Dict]) 
             if core_signature == last_tried_core_signature:
                 continue
 
-            # [핵심 수정] 젬 이름에 코어 타입이 포함되어 있는지 직접 확인
+            #  젬 이름에 코어 타입이 포함되어 있는지 직접 확인
             if core['type'] in gem_to_place['name'] and core['slots'] > 0 and core['willpower'] >= gem_to_place['cost']:
                 last_tried_core_signature = core_signature
                 
@@ -98,4 +98,5 @@ def check_feasibility(cores_input: Dict[str, List[str]], held_gems: List[Dict]) 
             }
             for core in sorted_state
         ]
+
         return True, remaining_info
