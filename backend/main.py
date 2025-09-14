@@ -1,4 +1,4 @@
-# main.py (젬 시세 API 추가 버전)
+# main.py 
 from fastapi import FastAPI, HTTPException, WebSocket, WebSocketDisconnect, BackgroundTasks
 from pydantic import BaseModel, Field
 from typing import List, Dict, Optional
@@ -39,7 +39,6 @@ api_client: LostArkAPI
 final_optimizer: FinalOptimizer
 
 def run_optimization_task(task_id: str, request: OptimizeRequest):
-    # ... (기존과 동일) ...
     try:
         logger.info(f"Task {task_id}: Starting optimization.")
         task_manager[task_id] = {"status": "processing", "progress": 0, "message": "최신 젬 시세를 불러오는 중입니다...", "result": None}
@@ -104,7 +103,6 @@ async def get_gem_market_prices():
 
 @app.websocket("/ws/progress/{task_id}")
 async def websocket_progress(websocket: WebSocket, task_id: str):
-    # ... (기존과 동일) ...
     await websocket.accept()
     logger.info(f"WebSocket connection established for task {task_id}")
     try:
@@ -126,4 +124,5 @@ async def websocket_progress(websocket: WebSocket, task_id: str):
         logger.error(f"An error occurred in WebSocket for task {task_id}: {e}")
     finally:
         if task_id in task_manager:
+
             del task_manager[task_id]
