@@ -10,7 +10,6 @@ def _generate_recursive(target_sum: int, num_items: int, min_val: int) -> List[L
     """
     재귀적으로 target_sum을 num_items개의 정수로 나누는 모든 조합을 찾는다.
     """
-    # ... (내부 재귀 함수는 변경 없음) ...
     if (target_sum, num_items, min_val) in memo:
         return memo[(target_sum, num_items, min_val)]
     if num_items == 1:
@@ -72,4 +71,5 @@ if __name__ == "__main__":
     scenarios_2 = generate_scenarios(willpower_2, slots_2)
     print(f"\nWillpower = {willpower_2}, Slots = {slots_2}:")
     print(f"  - 생성된 시나리오 개수: {len(scenarios_2)}")
+
     print(f"  - 결과 (전체): {scenarios_2}")
