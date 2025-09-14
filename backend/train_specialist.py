@@ -8,7 +8,7 @@ from gem_env import GemCraftingEnv
 from dqn_model import create_dqn_model
 
 # ===================================================================
-# *** 수정된 부분: 하이퍼파라미터를 클래스 외부 상수로 정의 ***
+# *** 하이퍼파라미터를 클래스 외부 상수로 정의 ***
 # ===================================================================
 # DQN 하이퍼파라미터
 DEFAULT_GAMMA = 0.99
@@ -29,7 +29,7 @@ DEFAULT_TARGET_UPDATE_FREQ = 10
 
 class DQNAgent:
     # ===================================================================
-    # *** 수정된 부분: __init__에서 하이퍼파라미터를 인자로 받음 ***
+    # *** __init__에서 하이퍼파라미터를 인자로 받음 ***
     # ===================================================================
     def __init__(self, state_shape, num_actions, buffer_limit, batch_size, gamma, learning_rate):
         self.state_shape = state_shape
@@ -101,7 +101,7 @@ if __name__ == '__main__':
     env = GemCraftingEnv(gem_grade=GEM_GRADE, targets=TARGETS)
     
     # ===================================================================
-    # *** 수정된 부분: 에이전트 생성 시 하이퍼파라미터 전달 ***
+    # ***  에이전트 생성 시 하이퍼파라미터 전달 ***
     # ===================================================================
     agent = DQNAgent(
         state_shape=env.observation_space.shape,
@@ -145,4 +145,5 @@ if __name__ == '__main__':
     agent.main_network.save(MODEL_SAVE_PATH)
     print(f"\nTraining complete! Model saved to '{MODEL_SAVE_PATH}'")
     
+
     env.close()
