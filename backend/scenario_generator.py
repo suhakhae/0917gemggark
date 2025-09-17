@@ -40,8 +40,8 @@ def generate_scenarios(total_willpower: int, num_slots: int) -> List[List[int]]:
     # ===================================================================
     # *** 수정된 핵심 로직: for 루프를 제거하고 직접 호출 ***
     # ===================================================================
-    # 이전에는 total_willpower '이하'의 모든 합계를 탐색했지만,
-    # 이제는 정확히 total_willpower와 일치하는 조합만 찾습니다.
+    # 
+    # total_willpower '이하'의 모든 합계를 탐색하는 대신, 정확히 total_willpower와 일치하는 조합만 찾습니다. 
     min_possible_sum = num_slots * MIN_COST
     max_possible_sum = num_slots * MAX_COST
 
@@ -73,3 +73,4 @@ if __name__ == "__main__":
     print(f"  - 생성된 시나리오 개수: {len(scenarios_2)}")
 
     print(f"  - 결과 (전체): {scenarios_2}")
+
