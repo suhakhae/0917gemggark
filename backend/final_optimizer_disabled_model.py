@@ -68,7 +68,7 @@ class FinalOptimizer:
         return tf.argmax(q_values[0]).numpy()
 
     # ===================================================================
-    # *** 최종 수정: 현실적인 제약조건과 경제적 판단이 포함된 시뮬레이션 ***
+    # *** 수정: 현실적인 제약조건과 경제적 판단이 포함된 시뮬레이션 ***
     # ===================================================================
 
     def _simulate_until_success(self, model: tf.keras.Model, target_spec: Dict, material_gem_grade_en: str, material_price: int, peon_gold_value: int, crystal_price: int) -> Dict[str, int]:

@@ -1,9 +1,9 @@
-// src/pages/ResultPage.js (오류 방어 코드 추가 버전)
+// src/pages/ResultPage.js
 import React from 'react';
 import { Box, Typography, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Tooltip } from '@mui/material';
 
 const ResultPage = ({ data }) => {
-  // [핵심 수정] data.strategy_details가 존재하는지 확인하는 조건을 추가합니다.
+  // [수정] data.strategy_details가 존재하는지 확인하는 조건을 추가합니다.
   if (!data || data.total_cost === 0 || !data.strategy_details) {
     return (
         <Box sx={{ padding: 2 }}>

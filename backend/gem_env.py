@@ -12,7 +12,7 @@ class GemCraftingEnv(gym.Env):
     def __init__(self, gem_grade: str, targets: Dict[str, int]):
         super().__init__()
         self.gem_grade = gem_grade
-        # *** 수정: 목표를 인자로 받아 저장 ***
+        # *** 목표를 인자로 받아 저장 ***
         self.targets = targets 
         self.simulator = None
         self.action_space = spaces.Discrete(2)
@@ -22,7 +22,6 @@ class GemCraftingEnv(gym.Env):
         self.observation_space = spaces.Box(low, high, dtype=np.float32)
 
     def _get_obs(self) -> np.ndarray:
-        # ... (이전과 동일)
         state = self.simulator.state
         return np.array([state['efficiency'], state['core'], state['effect1'], state['effect2'], state['remaining_crafts'], state['remaining_rerolls']], dtype=np.float32)
 
@@ -33,13 +32,12 @@ class GemCraftingEnv(gym.Env):
                 state['core'] >= self.targets.get('core', 1))
 
     def reset(self, seed=None, options=None) -> Tuple[np.ndarray, Dict]:
-        # ... (이전과 동일)
         super().reset(seed=seed)
         self.simulator = GemSimulator(gem_grade=self.gem_grade, rng=self.np_random)
         return self._get_obs(), {}
 
     def step(self, action: int) -> Tuple[np.ndarray, Dict]:
-        # ... (이전과 동일, is_target_reached만 내부 함수로 변경)
+        # (is_target_reached만 내부 함수로 변경)
         reward = -1.0
         if action == 1:
             if self.simulator.state['remaining_rerolls'] > 0:

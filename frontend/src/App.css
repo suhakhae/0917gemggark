@@ -1,4 +1,4 @@
-/* src/App.css (레이아웃 수정 버전) */
+/* src/App.css */
 
 .App {
   text-align: center;
@@ -6,7 +6,7 @@
 
 .App-header {
   background-color: #282c34;
-  padding: 20px; /* 세로 길이를 줄이기 위해 padding 값 조정 */
+  padding: 20px; /* padding 값 조정 */
   color: white;
   margin-bottom: 24px; /* 헤더와 메인 콘텐츠 사이의 간격 */
 }

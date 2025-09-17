@@ -1,9 +1,9 @@
 # gemggark_backend/docker-compose.yml
 
-version: '3.8' # docker-compose 파일 형식 버전을 지정합니다.
+version: '3.8' # docker-compose 파일 형식 버전
 
 services:
-  # 첫 번째 서비스: 우리의 백엔드 API 서버
+  # 첫 번째 서비스: 백엔드 API 서버
   gemggark-api:
     build: . # 현재 디렉토리의 Dockerfile을 사용하여 이미지를 빌드합니다.
     ports:

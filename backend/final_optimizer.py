@@ -16,7 +16,7 @@ from scenario_generator import generate_scenarios
 logger = logging.getLogger(__name__)
 
 class FinalOptimizer:
-    # <<< 1. 모든 관련 상수를 클래스 변수로 이동 및 선언 >>>
+    # 모든 관련 상수를 클래스 변수로 이동 및 선언 
     GEM_GRADES_ORDER = ["고급", "희귀", "영웅"]
     GRADE_MAP_KR_TO_EN = { "고급": "advanced", "희귀": "rare", "영웅": "heroic" }
     PEON_COST_PER_GEM = {"고급": 3, "희귀": 6, "영웅": 12}
@@ -38,7 +38,6 @@ class FinalOptimizer:
             self.redis_client = None
 
     def _load_specialist_models(self, models_dir: str) -> Dict[tuple, tf.keras.Model]:
-        # ... (이하 코드는 이전과 동일) ...
         models = {}
         logger.info(f"Loading specialist AI models from '{models_dir}'...")
         pattern = re.compile(r"gem_model_c(\d+)_e(\d+)\.h5")
@@ -121,7 +120,7 @@ class FinalOptimizer:
         logger.info(f"Cache MISS for key: {cache_key}. Calculating...")
         best_option = {"total_cost": float('inf')}
         candidate_specs = []
-        # <<< 2. self.GEM_INFO 로 참조 방식 변경
+        # self.GEM_INFO 로 참조 방식 변경
         for gem_type, base_cost in self.GEM_INFO.items():
             is_order_gem = gem_type in ["안정", "견고", "불변"]
             if (core_type == "질서" and not is_order_gem) or (core_type == "혼돈" and is_order_gem): continue
@@ -137,7 +136,7 @@ class FinalOptimizer:
                 material_grade_en = self.GRADE_MAP_KR_TO_EN.get(material_grade_kr)
                 if not material_grade_en: continue
                 required_peons = self.PEON_COST_PER_GEM.get(material_grade_kr, 0)
-                # <<< 2. self.CRYSTALS_PER_PEON 으로 참조 방식 변경
+                # self.CRYSTALS_PER_PEON 으로 참조 방식 변경
                 required_crystals = required_peons * self.CRYSTALS_PER_PEON
                 peon_gold_value = (required_crystals / 100) * crystal_price
                 expected_costs_breakdown = self.get_true_expected_cost(spec, material_grade_en, material_price, peon_gold_value, crystal_price, simulations)

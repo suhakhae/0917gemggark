@@ -1,4 +1,4 @@
-// src/pages/LoadingPage.js (WebSocket 연동 및 실시간 진행률 표시)
+// src/pages/LoadingPage.js
 import React, { useState, useEffect } from 'react';
 import { Box, Typography, LinearProgress } from '@mui/material';
 

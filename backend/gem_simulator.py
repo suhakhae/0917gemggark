@@ -2,7 +2,7 @@
 import numpy as np
 from typing import Dict, List, Any
 
-# --- (상단 상수 정의 부분은 이전과 동일) ---
+
 GEM_GRADES = {
     "advanced": {"craft_count": 5, "reroll_count": 0},
     "rare": {"craft_count": 7, "reroll_count": 1},
@@ -15,7 +15,7 @@ GEM_INFO = {
 }
 
 CRAFT_POSSIBILITIES = [
-    # ... (이전과 동일한 28개의 가능성 딕셔셔리 리스트) ...
+    # ... (28개의 가능성 딕셔셔리 리스트) ...
     {'type': 'efficiency', 'value': 1, 'probability': 11.65, 'condition': lambda gem: gem['efficiency'] < 5},
     {'type': 'efficiency', 'value': 2, 'probability': 4.40, 'condition': lambda gem: gem['efficiency'] < 4},
     {'type': 'efficiency', 'value': 3, 'probability': 1.75, 'condition': lambda gem: gem['efficiency'] < 3},
@@ -67,9 +67,7 @@ class GemSimulator:
         self.state = self.create_gem()
         return self.state
     
-    # ===================================================================
-    # *** 수정된 로직 (결정성 보장 최종 버전) ***
-    # ===================================================================
+    
     def generate_craft_options(self) -> List[Dict[str, Any]]:
         """
         가장 견고한 방식으로 고유한 가공 옵션 4개를 확률적으로 생성합니다.

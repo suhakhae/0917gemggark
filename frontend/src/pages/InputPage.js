@@ -1,4 +1,4 @@
-// src/pages/InputPage.js (유효성 강화 최종 버전)
+// src/pages/InputPage.js 
 import React, { useState, useEffect } from 'react';
 import { Box, Typography, Slider, Button, IconButton, Select, MenuItem, FormControl, InputLabel, TextField, Chip, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, CircularProgress, Divider } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -9,7 +9,6 @@ const gradeOrder = ['고급', '희귀', '영웅'];
 const pointOptions = [1, 2, 3, 4, 5]; // <<< 2. 보유 젬 선택 옵션
 
 const InputPage = ({ setPageState, setTaskId }) => {
-  // ... (state 선언은 기존과 동일) ...
   const [gemPrices, setGemPrices] = useState(null);
   const [pricesLoading, setPricesLoading] = useState(true);
   const [pricesError, setPricesError] = useState(null);
@@ -21,7 +20,6 @@ const InputPage = ({ setPageState, setTaskId }) => {
   const [simulations, setSimulations] = useState(100);
 
   useEffect(() => {
-    // ... (useEffect는 기존과 동일) ...
     const fetchGemPrices = async () => {
       try {
         setPricesLoading(true);
@@ -58,7 +56,6 @@ const InputPage = ({ setPageState, setTaskId }) => {
   const handleSimulationsChange = (event, newValue) => setSimulations(newValue);
   
   const handleOptimizeClick = async () => {
-    // ... (API 호출 로직은 기존과 동일) ...
     const formattedCores = { "질서": cores.filter(c => c.type === '질서').map(c => c.grade), "혼돈": cores.filter(c => c.type === '혼돈').map(c => c.grade) };
     const formattedHeldGems = heldGems.map(({ id, name, ...rest }) => { const isOrderGem = ["안정", "견고", "불변"].includes(name); const prefix = isOrderGem ? "질서의 젬 : " : "혼돈의 젬 : "; return { ...rest, name: `${prefix}${name}` }; });
     const requestData = { cores: formattedCores, held_gems: formattedHeldGems, blue_crystal_price: crystalPrice, simulations_per_gem: simulations };
@@ -71,13 +68,12 @@ const InputPage = ({ setPageState, setTaskId }) => {
   };
 
   const renderPriceTable = (title, filterKeyword) => (
-      // ... (시세 테이블 렌더링 함수는 기존과 동일) ...
       <TableContainer component={Paper}><Typography variant="h6" sx={{ p: 2, textAlign: 'center' }}>{title}</Typography><Table size="small"><TableHead><TableRow><TableCell sx={{ width: '10%' }}>아이콘</TableCell><TableCell>아이템 이름</TableCell><TableCell align="right">최저가 (Gold)</TableCell></TableRow></TableHead><TableBody>{Object.entries(gemPrices).filter(([name]) => name.includes(filterKeyword)).sort(([aName], [bName]) => { const aGrade = gradeOrder.findIndex(g => aName.includes(g)); const bGrade = gradeOrder.findIndex(g => bName.includes(g)); if (aGrade !== bGrade) { return aGrade - bGrade; } return aName.localeCompare(bName); }).map(([name, price]) => (<TableRow key={name}><TableCell></TableCell><TableCell>{name}</TableCell><TableCell align="right">{price ? price.toLocaleString() : 'N/A'}</TableCell></TableRow>))}</TableBody></Table></TableContainer>
   );
 
   return (
     <Box sx={{ flexGrow: 1, p: 2 }}>
-      {/* ... (시세 대시보드는 기존과 동일) ... */}
+      { }
       <Paper elevation={3} sx={{ p: 2, mb: 3 }}><Typography variant="h5" gutterBottom sx={{ textAlign: 'center' }}>실시간 젬 시세</Typography><Box sx={{ display: 'flex', justifyContent: 'center', my: 2 }}>{pricesLoading && <CircularProgress />}{pricesError && <Typography color="error">{pricesError}</Typography>}</Box>{gemPrices && (<Grid container spacing={2} justifyContent="center"><Grid item xs={12} md={5}>{renderPriceTable('질서의 젬', '질서')}</Grid><Grid item xs={12} md={5}>{renderPriceTable('혼돈의 젬', '혼돈')}</Grid></Grid>)}</Paper>
       
       <Grid container spacing={3}>
@@ -108,7 +104,7 @@ const InputPage = ({ setPageState, setTaskId }) => {
           </Paper>
         </Grid>
 
-        {/* ... (오른쪽 섹션은 기존과 동일) ... */}
+        { }
         <Grid item xs={12} md={5}><Paper elevation={3} sx={{ p: 2, height: '100%' }}><Typography variant="h6" gutterBottom>3. 시장 및 설정</Typography><Box sx={{ width: '90%', margin: 'auto', mt: 2 }}><Typography gutterBottom>블루 크리스탈 시세: {crystalPrice.toLocaleString()} Gold</Typography><Slider value={crystalPrice} onChange={handleCrystalChange} step={100} marks min={2000} max={20000} /><Box sx={{ mt: 3 }}><Typography gutterBottom>정밀도 (시뮬레이션 횟수): {simulations} 회</Typography><Typography variant="caption" color="text.secondary">(높을수록 계산 시간이 오래 걸립니다)</Typography><Slider value={simulations} onChange={handleSimulationsChange} step={50} marks min={50} max={1000} /><Chip label={`예상 시간: ${getEstimatedTime(simulations)}`} color="info" variant="outlined" size="small" /></Box></Box></Paper></Grid>
       </Grid>
       
