@@ -81,7 +81,7 @@ class GemSimulator:
             probabilities = np.array([opt['probability'] for opt in available_options])
             probabilities /= probabilities.sum() # 확률 정규화
 
-            # numpy RNG를 사용하여 하나의 인덱스를 선택
+            # 하나의 인덱스를 선택 -> numpy RNG 
             chosen_index = self.rng.choice(len(available_options), p=probabilities)
             
             # 선택된 옵션을 결과에 추가하고, 다음 샘플링을 위해 풀(pool)에서 제거
