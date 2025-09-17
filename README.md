@@ -42,16 +42,13 @@ Gemggark는 로스트아크의 '아크그리드' 시스템에 대한 최적의 �
     LOSTARK_API_KEY=여기에_발급받은_API_키를_입력하세요
     ```
 
-2.  **빈 로그 파일 생성:**
-    -   프로젝트 루트에 `gemggark_api.log` 라는 이름의 빈 파일을 생성합니다.
-
-3.  **Docker Compose 실행:**
+2.  **Docker Compose 실행:**
     -   터미널에서 아래 명령어를 실행하여 백엔드 서버와 Redis를 동시에 시작합니다.
     ```bash
     docker-compose up --build
     ```
 
-4.  **서버 접속:**
+3.  **서버 접속:**
     -   서버가 성공적으로 시작되면, API 문서는 `http://localhost:8000/docs` 에서 확인할 수 있습니다.
 
 ---
