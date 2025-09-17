@@ -119,10 +119,11 @@ const InputPage = ({ setPageState, setTaskId }) => {
 };
 
 const getEstimatedTime = (sims) => {
-  if (sims <= 200) return "약 1분 이내";
-  if (sims <= 500) return "약 1~3분";
-  if (sims <= 800) return "약 3~5분";
-  return "5분 이상";
+  if (sims <= 200) return "약 5분 이내";
+  if (sims <= 500) return "약 5~10분";
+  if (sims <= 800) return "10분이상 - 권장되지 않음";
+  return "계산이 매우 오래 걸릴 수 있습니다.";
 };
+
 
 export default InputPage;
