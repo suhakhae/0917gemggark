@@ -56,9 +56,9 @@ def extract_metadata(api_key: str) -> None:
                 item_name = item.get("Name")
                 item_grade = item.get("Grade")
                 
-                # ===================================================================
-                # *** 수정된 핵심 로직: 이름과 등급을 별도로, 정확하게 검사 ***
-                # ===================================================================
+                # =======================================================
+                # *** 핵심 로직: 이름과 등급을 별도로, 정확하게 검사 ***
+                # =======================================================
                 if item_name in TARGET_GEM_NAMES and item_grade in TARGET_GEM_GRADES:
                     # 사용자가 보기 편한 전체 이름 생성
                     full_name = f"{item_grade} 등급 {item_name}"
@@ -69,7 +69,7 @@ def extract_metadata(api_key: str) -> None:
                     }
                     if all(metadata.values()):
                         found_gems.append(metadata)
-                # ===================================================================
+                # ========================================================
             
             page_no += 1
             time.sleep(0.5)
@@ -108,5 +108,6 @@ if __name__ == "__main__":
         print("!!! 오류: .env 파일에 'LOSTARK_API_KEY'가 설정되어 있지 않습니다. !!!")
     else:
         extract_metadata(api_key=api_key)
+
 
 
