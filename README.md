@@ -33,7 +33,7 @@ Gemggark는 로스트아크의 '아크그리드' 시스템에 대한 최적의 �
 
 **사전 준비:**
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/) 설치
-- [NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html) 설치 (GPU 사용 시)
+- [NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html) 설치 (NVIDIA GPI 필수)
 - 로스트아크 Open API Key 발급
 
 **실행 순서:**
@@ -41,6 +41,12 @@ Gemggark는 로스트아크의 '아크그리드' 시스템에 대한 최적의 �
     -   프로젝트 루트에 `.env` 파일에 있는 API키를 발급받은 본인의 API 키로 교체합니다.
     ```
     LOSTARK_API_KEY=여기에_발급받은_API_키를_입력하세요
+    ```
+
+2. **터미널을 열어서 백엔드 프로젝트 경로를 지정하세요
+    - 윈도우 파일 관리자에서 쉽게 경로를 복사할 수 있습니다
+    ```
+    cd './backend'
     ```
 
 2.  **Docker Compose 실행:**
