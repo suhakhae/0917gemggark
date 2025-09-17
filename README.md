@@ -1,5 +1,5 @@
 
-# Gemggark: AI 기반 아크그리드 젬 세공 기댓값 계산기
+# Gemggark: AI 아크그리드 젬 세공 기댓값 계산기
 
 ## 1. Back-end Part
 
